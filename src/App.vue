@@ -1,23 +1,32 @@
 <template>
   <div id="app">
-    <appHeader></appHeader>
-    <h1>{{ msg }}</h1>
-
+    <div class="container">
+      <appHeader></appHeader>
+      <navigation></navigation>
+      <breadcrumbs></breadcrumbs>
+      <basket></basket>
+    </div>
   </div>
 </template>
 
 <script>
     import appHeader from './components/header.vue'
+    import navigation from './components/navigation.vue'
+    import breadcrumbs from './components/breadcrumbs.vue'
+    import basket from './components/basket.vue'
 
     export default {
         name: 'app',
         data () {
             return {
-                msg: 'Welcome'
+                // empty
             }
         },
         components: {
-            appHeader
+            appHeader,
+            navigation,
+            breadcrumbs,
+            basket,
         }
     }
 </script>
@@ -27,26 +36,31 @@
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
+    color: #333333;
   }
 
   h1, h2 {
     font-weight: normal;
   }
 
-  ul {
+  ul,ol {
     list-style-type: none;
     padding: 0;
+    margin: 0;
   }
 
   li {
-    display: inline-block;
-    margin: 0 10px;
+    padding: 0;
+    margin: 0;
   }
 
-  a {
-    color: #42b983;
+  button {
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .container {
+    width: 1110px;
+    margin: 0 auto;
   }
 </style>

@@ -5,6 +5,12 @@
 ## Build Setup
 
 ``` bash
+# clone this repo
+git clone git@github.com:geekorn/gb_nodejs.git recruit-korneev
+
+# go to path
+cd recruit-korneev/
+
 # install dependencies
 npm install
 
