@@ -6,7 +6,7 @@
 
 ``` bash
 # clone this repo
-git clone git@github.com:geekorn/gb_nodejs.git recruit-korneev
+git clone git@github.com:geekorn/basketvue.git recruit-korneev
 
 # go to path
 cd recruit-korneev/
