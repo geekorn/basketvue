@@ -32,6 +32,8 @@
     width: 100%;
     margin-bottom: 45px;
     text-align: center;
+    font-weight: 300;
+    font-size: 16px;
     &__list {
       width: 100%;
       display: flex;
@@ -53,8 +55,7 @@
         display: inline-block;
         width: 5px;
         height: 5px;
-        /*margin-left: 11px;*/
-        border: 2px solid transparent;
+        border: 1px solid transparent;
         border-left-color: #000000;
         border-bottom-color: #000000;
         transform: rotate(-45deg) translateY(-5px);

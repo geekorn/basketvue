@@ -17,17 +17,20 @@
 
 <style lang="scss">
   .search {
-    /*display: flex;*/
+    display: flex;
   }
   .input-group {
     position: relative;
+    display: inline-block;
+    width: 312px;
     margin-right: 8px;
-    overflow: hidden;
+    /*overflow: hidden;*/
     input {
-      padding: 9px 14px;
+      width: 100%;
+      height: 100%;
       padding-left: 30px;
-      border: none;
       border-radius: 3px;
+      border: 1px solid #d5d5d5;
       box-shadow: inset 0 0 5px rgba(#000000, 0.16);
 
       &:focus {
@@ -35,13 +38,27 @@
         box-shadow: 0 0 5px rgba(#000000, 0.16);
       }
     }
+    &__icon {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      background-image: url(../assets/search.png);
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      background-size: contain;
+    }
   }
   .search__btn {
-    padding: 9px 14px;
+    padding: 8px 14px;
     border: none;
     border-radius: 3px;
     background-color: #17709a;
     color: #ffffff;
+    font-size: 12px;
     text-transform: uppercase;
   }
 </style>

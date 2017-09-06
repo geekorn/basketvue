@@ -14,7 +14,6 @@
             <button class="amount__btn" type="button" v-on:click="productAmountInc">+</button>
           </span>
             =
-            <!--<span class="total">{{product.price * amount}}</span>-->
             <span class="total">{{totalPrice}} P</span>
           </div>
         </div>
@@ -36,6 +35,7 @@
             }
         },
         props: {
+            id: Number,
             count: Number,
             price: Number,
             coords: Array
@@ -53,7 +53,7 @@
                 return this.amount++;
             },
             saveChange: function () {
-                this.$emit('updateCount', this.amount);
+                this.$emit('updateCount', this.id, this.amount);
                 this.$emit('close');
             }
         }

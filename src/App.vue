@@ -1,11 +1,11 @@
 <template>
-  <div id="app">
-    <div class="container">
-      <appHeader></appHeader>
-      <navigation></navigation>
-      <breadcrumbs></breadcrumbs>
-      <basket></basket>
-    </div>
+  <div id="app" class="wrapper">
+      <div class="container">
+        <appHeader></appHeader>
+        <navigation></navigation>
+        <breadcrumbs></breadcrumbs>
+        <basket></basket>
+      </div>
   </div>
 </template>
 
@@ -17,11 +17,6 @@
 
     export default {
         name: 'app',
-        data () {
-            return {
-                // empty
-            }
-        },
         components: {
             appHeader,
             navigation,
@@ -32,18 +27,28 @@
 </script>
 
 <style lang="scss">
+  @import "assets/fonts/fonts.css";
+
+  * {
+    box-sizing: border-box;
+  }
+
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: 'beausans', Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #333333;
   }
 
+  .wrapper {
+    width: 100%;
+    min-height: 100%;
+  }
   h1, h2 {
     font-weight: normal;
   }
 
-  ul,ol {
+  ul, ol {
     list-style-type: none;
     padding: 0;
     margin: 0;

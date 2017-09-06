@@ -2,28 +2,22 @@
   <li class="goods__item product">
     <div class="product__number">
       <label class="checkbox">
-        <input class="checkbox__fake" type="checkbox">
+        <input class="checkbox__fake" type="checkbox" v-model="product.checked" v-bind:id="product.id">
         <span class="checkbox__styled"></span>
       </label>
-      <span class="number"></span>
+      <span class="number">{{index}}</span>
     </div>
     <div class="product__img">
-      <img src="" alt="">
+      <img :src="getImgUrl(product.img)" alt="">
     </div>
     <div class="product__name">{{product.name}}</div>
     <div class="product__price">
       <span class="price">{{product.price}} Р</span>
-      *
-      <span class="amount"><input type="text" v-model="amount" v-on:click="openModal"></span>
+      x
+      <span class="amount"><input type="text" v-model="product.count" v-on:click="openModal" readonly></span>
       =
       <span class="total" >{{totalPrice}} Р</span>
     </div>
-    <modal v-if="showModal" @close="showModal = false"
-           :count="amount"
-           :price="product.price"
-           :coords="coords"
-           v-on:updateCount="updateCounts">
-    </modal>
   </li>
 </template>
 
@@ -32,31 +26,23 @@
     export default {
         name: 'product',
         props: {
+            index: Number,
             product: Object
-        },
-        data: function () {
-            return {
-                showModal: false,
-                amount: this.product.count,
-                coords: []
-            }
         },
         computed: {
             totalPrice: function () {
-                return this.product.price * this.amount
+                return this.product.price * this.product.count
             }
         },
         methods: {
-            openModal: function (e, count) {
-                this.showModal = true;
-                this.coords = [e.clientY, e.clientX];
+            getImgUrl: function (imgName) {
+                let images = require.context('../assets/', false, /\.png$/)
+                return images('./' + imgName + ".png")
             },
-            updateCounts: function (count) {
-                return this.amount = count;
+            openModal: function (e) {
+                let coords = [e.clientY, e.clientX];
+                this.$emit('showModal', this.product.id, coords)
             }
-        },
-        components: {
-            modal
         }
     }
 </script>
@@ -71,20 +57,42 @@
   .product {
     display: flex;
     align-content: center;
-    /*align-items: center;*/
     height: 75px;
     & > div {
-      vertical-align: middle;
-      /*:not(:last-child) {*/
-        /*border-right: 1px dotted #000000;*/
-      /*}*/
+      position: relative;
+      display: flex;
+      align-items: center;
+      &:not(:last-child) {
+        &:after {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          display: block;
+          width: 2px;
+          border-right: 1px dotted #000000;
+        }
+      }
     }
 
     &__number, &__img {
       flex: 1;
     }
+    &__number {
+      display: flex;
+      justify-content: space-around;
+    }
+    &__img {
+      img {
+        margin: 0 auto;
+      }
+    }
     &__name {
       flex: 6;
+      padding: 0 20px;
+      font-family: Arial;
+
     }
     &__price {
       flex: 3;
@@ -102,5 +110,26 @@
         cursor: pointer;
       }
     }
+  }
+
+  .checkbox__fake {
+    position: absolute;
+    left: -9999px;
+    &:checked {
+      ~ .checkbox__styled {
+        background-image: url(../assets/shape.png);
+      }
+    }
+  }
+  .checkbox__styled {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    border-radius: 3px;
+    box-shadow: inset 0 0 5px rgba(#000000, 0.12);
+    background-repeat: no-repeat;
+    background-size: 75%;
+    background-position: 50% 25%;
   }
 </style>
